@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -40,7 +41,15 @@ class ContactController extends Controller
             'name' => 'required|max:255',
             'mobile' => 'required|unique:contacts|max:14',
             'email' => 'required',
+        ],[
+            'name.required' => 'Must be need name!',
+            'mobile.required' => 'Must be needed the mobile number!',
+            'mobile.unique' => 'Already used the mobile number!',
+            'email.required' => 'Must be need email!',
         ]);
+        if($validated->fails()) {
+            return Redirect::back()->withErrors($validated);
+        }
         $validated['user_id'] = Auth::user()->id;
         Contact::create($validated);
         return redirect('dashboard');

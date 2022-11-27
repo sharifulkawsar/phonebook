@@ -9,12 +9,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <form action="{{route('store.contact')}}" method="POST">
+                    @if ($errors->any())
+                        {!! implode('', $errors->all('<div class="alert alert-danger" role="alert">
+                            :message
+                          </div>')) !!}
+                    @endif
+                    <form action="{{ route('store.contact') }}" method="POST">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="name">Name</label>
-                                <input type="text" class="form-control" id="name" name="name" placeholder="Md Shariful Islam">
+                                <input type="text" class="form-control" id="name" name="name"
+                                    placeholder="Md Shariful Islam">
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="mobile">Mobile Number</label>
@@ -24,12 +30,18 @@
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="example@example.com">
+                            <input type="email" class="form-control" id="email" name="email"
+                                placeholder="example@example.com">
                         </div>
 
                         <div class="form-group">
-                            <label for="email">Group Name (Optional)</label>
-                            <input type="text" class="form-control" id="group_name" name="group_name" placeholder="Example">
+                            <label for="group_name">Group Name (Optional)</label>
+                            <select id="group_name" name="group_name" class="form-control">
+                                <option selected>...</option>
+                                <option value="family">Family</option>
+                                <option value="friends">Friends</option>
+                                <option value="colleagues">Colleagues</option>
+                            </select>
                         </div>
                         <button type="submit" class="btn btn-success">Save</button>
                     </form>
