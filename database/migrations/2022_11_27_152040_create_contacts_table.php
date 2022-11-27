@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->integer('mobile');
             $table->string('email');
-            $table->string('group_name');
+            $table->string('group_name')->nullable();
             $table->timestamps();
         });
     }
