@@ -7,6 +7,26 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+
+## PhoneBook Installation
+Clone the repository
+-git clone https://github.com/sharifulkawsar/phonebook.git
+
+## Switch to the repo folder
+-cd phonebook
+
+## Install Composer
+-composer install
+
+## Copy the example env file and make the required configuration changes in the .env file
+-cp .env.example .env
+## Run the database migrations
+-php artisan migrate
+
+## Start the local development server
+-php artisan serve
+
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
