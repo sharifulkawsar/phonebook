@@ -32,3 +32,5 @@ require __DIR__.'/auth.php';
 #contact
 Route::get('/add_contact', [ContactController::class, 'index'])->name('add_contact');
 Route::post('/store', [ContactController::class, 'store'])->name('add.contact');
+Route::post('/search', [ContactController::class, 'search'])->name('search.contact');
+

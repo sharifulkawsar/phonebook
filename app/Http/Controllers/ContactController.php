@@ -37,7 +37,7 @@ class ContactController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|max:255',
-            'mobile' => 'required',
+            'mobile' => 'required|unique:contacts|max:14',
             'email' => 'required',
             'group_name' => 'string'
         ]);
@@ -53,7 +53,13 @@ class ContactController extends Controller
      */
     public function show()
     {
-        $contacts = Contact::paginate(2);
+        $contacts = Contact::paginate(10);
+        return view('dashboard', compact('contacts'));
+    }
+
+    public function search(Request $request)
+    {
+        $contacts = Contact::where('mobile', $request->mobile)->paginate(10);
         return view('dashboard', compact('contacts'));
     }
 
