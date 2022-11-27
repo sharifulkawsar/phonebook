@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ContactController extends Controller
 {
@@ -40,6 +41,7 @@ class ContactController extends Controller
             'mobile' => 'required|unique:contacts|max:14',
             'email' => 'required',
         ]);
+        $validated['user_id'] = Auth::user()->id;
         Contact::create($validated);
         return redirect('dashboard');
     }
@@ -52,7 +54,8 @@ class ContactController extends Controller
      */
     public function show()
     {
-        $contacts = Contact::paginate(10);
+        $user_id = Auth::user()->id;
+        $contacts = Contact::where('user_id', $user_id)->paginate(10);
         return view('dashboard', compact('contacts'));
     }
 
