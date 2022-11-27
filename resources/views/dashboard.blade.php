@@ -32,8 +32,8 @@
                                     <td> {{ $contact->name }} </td>
                                     <td> {{ $contact->mobile }} </td>
                                     <td> {{ $contact->email }} </td>
-                                    <td> {{ $contact->created_at }} </td>
-                                    <td> {{ $contact->updated_at }} </td>
+                                    <td> {{ date('d-m-Y H:i:s', strtotime($contact->created_at)) }} </td>
+                                    <td> {{ date('d-m-Y H:i:s', strtotime($contact->updated_at)) }} </td>
                                 </tr>
                             @endforeach
                         </tbody>
