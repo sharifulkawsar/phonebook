@@ -47,9 +47,6 @@ class ContactController extends Controller
             'mobile.unique' => 'Already used the mobile number!',
             'email.required' => 'Must be need email!',
         ]);
-        if($validated->fails()) {
-            return Redirect::back()->withErrors($validated);
-        }
         $validated['user_id'] = Auth::user()->id;
         Contact::create($validated);
         return redirect('dashboard');
